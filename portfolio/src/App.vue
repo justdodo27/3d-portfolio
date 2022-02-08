@@ -20,7 +20,35 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
+}
+
+body{
+  margin: 0;
+  padding: 15px;
+  padding-top: 20px;
+  background: linear-gradient(60deg, #c18fff, #e6c2ff) fixed no-repeat;
+}
+
+.container{
+  padding: 10px 0px;
+  border-radius: 50px;
+  background-color: #b980ff;
+  position: relative;
+}
+
+.container::before{
+  content: " ";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50px;
+  background-color: #9938f5;
+  z-index: -1;
+  transform: rotate(-1deg);
+  // box-shadow: 0px 0px 1px black;
 }
 
 #nav {

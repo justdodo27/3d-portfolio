@@ -32,7 +32,7 @@ export default {
         align-items: center;
         align-content: center;
         gap: 10px;
-        filter: drop-shadow(3px 3px 3px black);
+        // filter: drop-shadow(2px -5px 1px black);
     }
 
     .flag{
@@ -48,15 +48,15 @@ export default {
         padding: 5px 0px;
         overflow: hidden;
         position: relative;
-        clip-path: path('M 0 2 Q 10 -2 20 2 Q 30 6 40 2 L 40 27 Q 31 31 20 27 Q 10 23 0 27 L 0 0');
+        // clip-path: path('M 0 2 Q 10 -2 20 2 Q 30 6 40 2 L 40 27 Q 31 31 20 27 Q 10 23 0 27 L 0 0');
         transition: 0.5s ease;
+        animation: wavy 0.8s cubic-bezier(0.57, 0.67, 0.83, 0.67) infinite alternate;
     }
 
     .flag:hover{
         cursor: pointer;
-        clip-path: path('M 0 2 Q 10 -2 20 2 Q 30 6 40 2 L 40 27 Q 31 31 20 27 Q 10 23 0 27 L 0 0');
-        transition: 0.5s ease;
-        animation: wavy 0.5s cubic-bezier(0.57, 0.67, 0.83, 0.67) infinite alternate;
+        // clip-path: path('M 0 2 Q 10 -2 20 2 Q 30 6 40 2 L 40 27 Q 31 31 20 27 Q 10 23 0 27 L 0 0');
+        // transition: 0.5s ease;
     }
 
     .jp{
