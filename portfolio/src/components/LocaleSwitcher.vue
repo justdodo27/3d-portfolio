@@ -19,7 +19,7 @@ export default {
         switchLocale(locale){
             if (this.$i18n.locale !== locale){
                 this.$i18n.locale = locale
-                this.$router.push({ path: '/' + locale })
+                this.$router.push({ name: this.$route.name,  params: {language: locale} })
             }
         }
     }
