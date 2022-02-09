@@ -1,8 +1,8 @@
 <template>
     <nav>
         <router-link active-class="active" class="nav-link" :to="'/' + $route.params.language">Home</router-link>
-        <router-link active-class="active" class="nav-link" :to="'/' + $route.params.language + '/about'">About</router-link>
-        <router-link active-class="active" class="nav-link" :to="'/' + $route.params.language + '/about'">Contact</router-link>
+        <router-link active-class="active" class="nav-link" :to="'/' + $route.params.language + '/projects'">Projects</router-link>
+        <router-link active-class="active" class="nav-link" :to="'/' + $route.params.language + '/contact'">Contact</router-link>
         <LocaleSwitcher></LocaleSwitcher>
     </nav>
 </template>
@@ -23,7 +23,6 @@ export default {
         justify-content: center;
         gap: 10px;
         margin-bottom: 20px;
-        // border-bottom: 1px solid white;
         padding: 10px 0px;
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;

@@ -5,7 +5,8 @@ import router from "./router";
 
 const messages = {
     en: {
-        hello: "Hello there"
+        hello: "Hello there",
+        projects: "Projects"
     },
     ja: {
         hello: "こんにちは、世界"
