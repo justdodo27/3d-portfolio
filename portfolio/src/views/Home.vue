@@ -36,16 +36,6 @@ export default {
     left: 15px;
     top: 55px;
     font-size: 5rem;
-    animation: slide-left 1.5s cubic-bezier(0.67, 0.37, 0.27, 0.17) 0s infinite alternate forwards;
-  }
-
-  @keyframes slide-left {
-    from{
-      left: 15px;
-      }
-    to{
-      left: 20px;
-    }
   }
 
   #heading2{
@@ -53,16 +43,6 @@ export default {
     right: 65px;
     bottom: 10px;
     font-size: 3.5rem;
-    animation: slide-right 1.5s cubic-bezier(0.67, 0.37, 0.27, 0.17) 0.5s infinite alternate forwards;
-  }
-
-  @keyframes slide-right {
-    from{
-      right: 65px;
-      }
-    to{
-      right: 70px;
-    }
   }
 
   #heading3{
