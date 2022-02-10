@@ -14,7 +14,7 @@ export default {
     data() {
         return {
             models: [
-                {name: "OilCan", src: "OilCan.glb"}
+                {name: "OilCan", src: "oilcan"}
             ]
         }
     },

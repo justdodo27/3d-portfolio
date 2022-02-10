@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="view">
-
+            <canvas id="viewport"></canvas>
+            <div class="controls">
+                <button @click="centerCamera()"><span class="material-icons">filter_center_focus</span></button>
+            </div>
         </div>
     </div>    
 </template>
@@ -13,23 +16,17 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
 
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth/2, window.innerHeight/2 )
+
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(
     45,
-    (window.innerWidth/2) / (window.innerHeight/2),
+    500 / 500,
     0.1,
     1000
 )
 
-renderer.setClearColor(0xA3A3A3)
-const grid = new THREE.GridHelper(30,30)
+const grid = new THREE.GridHelper(5,20)
 scene.add(grid)
-
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1;
-renderer.outputEncoding = THREE.sRGBEncoding;
 
 new RGBELoader()
     .setPath( '/textures/' )
@@ -39,23 +36,14 @@ new RGBELoader()
         scene.environment = texture;
 } )
 
-const orbit = new OrbitControls(camera, renderer.domElement)
-orbit.update()
-
-camera.position.z = 5;
+camera.position.z = 1;
 const loader = new GLTFLoader().setPath( '/models/' )
-
-function animate() {
-	requestAnimationFrame( animate );
-	renderer.render( scene, camera );
-}
-
-renderer.setAnimationLoop(animate)
 
 export default {
     data(){
         return {
-            model: null
+            model: null,
+            controls: null
         }
     },
     props: {
@@ -63,7 +51,7 @@ export default {
     },
     methods: {
         loadModel(){
-            const srcToModel = this.src + ".glb"
+            const srcToModel = this.src + '/OilCan.glb'
             console.log(srcToModel)
             loader.load(srcToModel, function (gltf) {
                 scene.add(gltf.scene)
@@ -72,13 +60,38 @@ export default {
 	        }, function(error) {
                 console.error(error)
             })
+        },
+        centerCamera(){
+            this.controls.orbit.reset()
         }
     },
     created(){
         
     },
     mounted(){
-        document.querySelector(".view").appendChild( renderer.domElement )
+        const canvas = document.querySelector("#viewport")
+
+        const renderer = new THREE.WebGLRenderer({canvas})
+        renderer.setClearColor(0xA3A3A3)
+
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1;
+        renderer.outputEncoding = THREE.sRGBEncoding;
+
+        this.controls = {orbit: new OrbitControls(camera, renderer.domElement)}
+
+        function animate() {
+            requestAnimationFrame( animate )
+            renderer.render( scene, camera )
+        }
+
+        renderer.setAnimationLoop(animate)
+
+        window.addEventListener('resize', () => {
+            camera.updateProjectionMatrix()
+        })
+        renderer.setSize(500, 500)
+        camera.aspect = 500 / 500
         this.loadModel()
         animate();
     }
@@ -87,7 +100,21 @@ export default {
 
 <style lang="scss" scoped>
     .view{
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 100%;
+        place-items: center;
+        padding: 0 20px;
+    }
+
+    #viewport{
+        height: 500px;
+        width: 500px;
+    }
+
+    .controls{
+        width: 500px;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
     }
 </style>
