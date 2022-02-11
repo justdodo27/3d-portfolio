@@ -6,6 +6,10 @@ import Project from "../views/Project.vue"
 
 const routes = [
   {
+    path: "/",
+    redirect: "/en"
+  },
+  {
     path: "/:language?",
     name: "Home",
     component: Home,
